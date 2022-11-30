@@ -23,7 +23,7 @@ function start() {
     }
 
 }
-start();
+// start();
 
 // 2nd part
 
@@ -73,7 +73,7 @@ function showMyDB(hidden) {
     
 }
 
-showMyDB(personalMovieDB.privat);
+// showMyDB(personalMovieDB.privat);
 
 // function writeYourGenres() {
 //     for (let i = 1; i < 4; i++) {
@@ -90,23 +90,129 @@ showMyDB(personalMovieDB.privat);
 // writeYourGenres();
 // console.log(personalMovieDB);
 
+function writeYourGenres() {
+    for (let i = 1; i < 4; i++) {
+        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+      
+    }
+}
+// writeYourGenres();
+
 // function writeYourGenres() {
 //     for (let i = 1; i < 4; i++) {
-//         personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
-      
+//         perdonalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+//         if (perdonalMovieDB.genres[i - 1] != '' && perdonalMovieDB.genres[i - 1] != null && 
+// perdonalMovieDB.genres[i - 1].length < 50) {
+//             return personalMovieDB.genres[i - 1];
+//         } else {
+//             i--;
+//             console.log('Error');
+//         }
 //     }
 // }
 // writeYourGenres();
 
-function writeYourGenres() {
-    for (let i = 1; i < 4; i++) {
-        perdonalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
-        if (perdonalMovieDB.genres[i - 1] != '' && perdonalMovieDB.genres[i - 1] != null && perdonalMovieDB.genres[i - 1].length < 50) {
-            return personalMovieDB.genres[i - 1];
-        } else {
-            i--;
-            console.log('Error');
-        }
+// Задача №1
+// 1) Создайте функцию, которая будет вычислять объем и площадь полной поверхности куба (тоже базовая математика, иногда
+//  используется  в создании анимаций). Эта функция принимает в себя целое число со значением длины ребра куба. Ответ
+//  выведите в формате строки, который изображен в примерах.
+// Если в функцию попал неправильный аргумент или вычислить значения невозможно - вернуть строку "При вычислении
+//  произошла ошибка"
+//  НЕ ИСПОЛЬЗУЙТЕ ОПЕРАТОР СТЕПЕНИ ** - в онлайн среде браузера он не работает и тесты будут ломаться. Это из-за того, 
+// что этот оператор из более нового стандарта, чем тут доступен.
+// Примеры:
+// calculateVolumeAndArea(5)  => 'Объем куба: 125, площадь всей поверхности: 150'
+// calculateVolumeAndArea(15)  => 'Объем куба: 3375, площадь всей поверхности: 1350'
+// calculateVolumeAndArea(15.5)  => 'При вычислении произошла ошибка'
+// calculateVolumeAndArea('15')  => 'При вычислении произошла ошибка'
+// calculateVolumeAndArea(-15)  => 'При вычислении произошла ошибка'
+
+function calculateVolumeAndArea(n) {
+    if (Number.isInteger(n) && n > 0 && typeof(n) === 'number') {
+        return `Объем куба: ${n * n * n}, площадь всей поверхности: ${n * n * 6}`;
+    } else {
+        return `При вычислении произошла ошибка`;
     }
 }
-writeYourGenres();
+
+console.log(calculateVolumeAndArea(5));
+console.log(calculateVolumeAndArea(15));
+console.log(calculateVolumeAndArea(15.5));
+console.log(calculateVolumeAndArea('15'));
+console.log(calculateVolumeAndArea(-15));
+console.log(calculateVolumeAndArea(7));
+
+function getCoupeNumber(num) {
+    if (typeof(num) === 'number' || num < 0 || !Number.isInteger(num)) {
+        return `Ошибка. Проверьте правильность введенного номера места`;
+    } else if (num >= 37 || num === 0) {
+        return `Таких мест в вагоне не существует`;
+    } else {return Math.ceil(num / 4);
+   
+}
+}
+
+console.log(getCoupeNumber('25'));
+
+// // 1) Создайте функцию, которая принимает в себя целое число минут и возвращает время в нужном формате строки. 
+// (Смотри пример).  Обратите внимание на окончание слова "час" - оно меняется в зависимости от цифры. Если вместо
+//  аргумента приходит не число,дробное или отрицательное число - функция возвращает строку "Ошибка, проверьте данные"
+// // Внимание! Давайте пока ограничимся максимум 600ю минутами (10 часов). Так как проверки на большие числа будут
+//  раздувать код (33 часа, 31 час, 11 часов и тд). Этого будет достаточно и код будет проверять именно этот
+//   промежуток (1 - 10 часов). Но вы можете реализовать и полный скрипт, он тоже должен проходить тесты.
+// Пример:
+// getTimeFromMinutes(150) => "Это 2 часа и 30 минут"
+// getTimeFromMinutes(50) => "Это 0 часов и 50 минут"
+// getTimeFromMinutes(0) => "Это 0 часов и 0 минут"
+// getTimeFromMinutes(-150) => "Ошибка, проверьте данные"
+
+function getTimeFromMinytes(min) {
+    let hour = Math.floor(min / 60);
+    let minutes = min - (Math.floor(min / 60) * 60);
+    let condition = typeof(min) === 'number' && min >= 0 && Number.isInteger(min); 
+
+    if (condition) {
+        if (hour === 1) {
+            return `Это ${hour} час и ${minutes} минут`;
+        }
+            if (hour >= 2 && hour <= 4) {
+            return `Это ${hour} часа и ${minutes} минут`;
+        }
+        if (hour === 0 || hour >= 5 && hour <=10) {
+            return `Это ${hour} часов и ${minutes} минут`;
+        }
+        
+        return 'Ошибка, проверьте данные';
+    } else {
+        return 'Ошибка, проверьте данные';
+    }
+
+    // if (condition && hour === 1) {
+    //     return `Это ${hour} час и ${minutes} минут`;
+    //   } else if (typeof(min) === 'number' && min >= 0 && Number.isInteger(min) && hour >= 2 && hour <= 4)
+    //    {
+    //     return `Это ${hour} часа и ${minutes} минут`;
+    //   } else if (typeof(min) === 'number' && min >= 0 && Number.isInteger(min) && hour === 0) {
+    //     return `Это ${hour} часов и ${minutes} минут`;
+    //   } else if (typeof(min) === 'number' && min >= 0 && Number.isInteger(min) && hour >= 5 && hour <=10){
+    //     return `Это ${hour} часов и ${minutes} минут`;
+    //   } else {
+    //     return 'Ошибка, проверьте данные';
+    //   }
+}
+
+console.log(getTimeFromMinytes(150));
+console.log(getTimeFromMinytes(50));
+console.log(getTimeFromMinytes(0));
+console.log(getTimeFromMinytes(-150));
+
+// function findMaxNumber(a, b, c, d) {
+//     if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d) || ) {
+//         return `0`;
+// } else {
+//     console.log('Vse ok');
+// } 
+// }
+// und
+// console.log(findMaxNumber('asd', '', '6', '7'));
+
