@@ -166,6 +166,8 @@ console.log(getCoupeNumber('25'));
 // getTimeFromMinutes(0) => "Это 0 часов и 0 минут"
 // getTimeFromMinutes(-150) => "Ошибка, проверьте данные"
 
+
+
 function getTimeFromMinytes(min) {
     let hour = Math.floor(min / 60);
     let minutes = min - (Math.floor(min / 60) * 60);
@@ -201,18 +203,102 @@ function getTimeFromMinytes(min) {
     //   }
 }
 
-console.log(getTimeFromMinytes(150));
-console.log(getTimeFromMinytes(50));
-console.log(getTimeFromMinytes(0));
-console.log(getTimeFromMinytes(-150));
+// console.log(getTimeFromMinytes(150));
+// console.log(getTimeFromMinytes(50));
+// console.log(getTimeFromMinytes(0));
+// console.log(getTimeFromMinytes(-150));
 
-// function findMaxNumber(a, b, c, d) {
-//     if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c) || Number.isNaN(d) || ) {
-//         return `0`;
-// } else {
-//     console.log('Vse ok');
-// } 
+
+
+function findMaxNumber(a, b, c, d) {
+    if (typeof(a) === 'number' && typeof(b) === 'number' && typeof(c) === 'number' && typeof(d) === 'number' && a !== undefined && b !== undefined && c !== undefined && d !== undefined) {
+        if (a > b && a > c && a > d) {
+            return a;
+        }
+        if (b > a && b > c && b > d) {
+            return b;
+        }
+        if (c > b && c > a && c > d) {
+            return c;
+        }
+        if (d > b && d > c && d > a) {
+            return d;
+        }
+    } else {
+    return 0;
+}
+}
+// console.log(findMaxNumber(8, 18.2, '', 4));
+
+function testBrowser(browser) {
+    if (browser === 'Chrome' || browser === 'Firefox' || browser === 'Safari' || browser === 'Opera') {
+        console.log('Okay we support these browsers too');
+    } else if (browser === 'Edge') {
+        console.log("You've got the Edge!");
+    } else {
+        console.log('We hope that this page looks ok!');
+    }
+}
+
+// testBrowser();
+
+function switchTest(x) {
+    switch(x) {
+        case 0:
+            return ('Вы ввели число 0');
+        case 1:
+            return ('Вы ввели число 1');
+        case 2:
+        case 3:
+            return ('Вы ввели число 2, а может и 3');   
+    }
+}
+
+// console.log(switchTest(3));
+
+function fib(num) {
+    let a = 0;
+    let b = 1;
+    let c = a + b;
+    let sum = `0 1`;
+    if (typeof(num) === 'number' && Number.isInteger(num) && num !== 0) {
+        switch(num) {
+            case 1:
+                return `${a}`;
+            case 2:
+                return `${a} ${b}`;
+        default:
+            for (let i = 3; i <= num; i++) {
+                        sum += ` ${c}`;
+                        a = b;
+                        b = c;
+                        c = a + b;
+            }
+                    return sum;
+        } 
+    } else {
+        return ``;
+    }
+}
+
+//     switch(num) {
+//             case 1:
+//                 return `${a}`;
+//             case 2:
+//                 return `${a} ${b}`;
+//                 case 0:
+//                 case typeof(num) === 'string':
+//                     return '';
+//     default:
+//     for (let i = 3; i <= num; i++) {
+//         sum += ` ${c}`;
+//         a = b;
+//         b = c;
+//         c = a + b;
+//     }
+//     return sum;
+//     }
 // }
-// und
-// console.log(findMaxNumber('asd', '', '6', '7'));
+
+// console.log(fib(0));
 
